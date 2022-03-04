@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>TurboWarpアクセスサイト</title>
+<script>
+    setTimeout(redirect, 0);
+    function redirect(id)
+    {
+    }
+</script>
+</head>
+<body>
+
+<p>友達のスクラッチプロジェクトを見るツール・TurboWarpをアクセスしやすいように作ったサイトです。</p>
+<p>※あくまでも、友達同士で、ネットに公開せずにスクラッチを見合いたい、という人のためのものです。</p>
+<p>IDとは、スクラッチのプロジェクトを開いたときのURLに表示されている .../projects/ のところの数字のことです。</p>
+<p>
+<label>友達のプロジェクトのID：<input type="number" id="id"></label>
+<input type="button" value="送信" id="redirectButton">
+</p>
+
+<p id="msg"></p>
+
+<script>
+function buttonClick(){
+    redirect(id.value);
+    window.open(('https://turbowarp.org/' + id.value))
+}
+
+let id = document.getElementById('id');
+id.value = '';
+
+let msg = document.getElementById('msg');
+let redirectButton = document.getElementById('redirectButton');
+redirectButton.addEventListener('click', buttonClick);
+</script>
