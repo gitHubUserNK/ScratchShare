@@ -7,31 +7,46 @@
         h1 {
         text-align: center;
     }
-    div#text-caution{
-        background-color: rgba(213, 240, 114, 0.667);
-    }
-    div#input{
-        background-color: rgba(142, 211, 202, 0.671);
-    }
 </style>
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
   <title>TurboWarpアクセスサイト</title>
 </head>
 <body>
-  <div id="center">
-    <h1>スクラッチ共有補助サイト</h1>
-    <div id="text-caution">
-      <p>非公開のスクラッチプロジェクトを見るツール・TurboWarpをアクセスしやすいように作ったサイトです。</p>
-      <p>※あくまでも、友達同士で、ネットに公開せずにスクラッチを見合いたい、という人のためのものです。</p>
-      <p>IDとは、スクラッチのプロジェクトを開いたときのURLに表示されている .../projects/ のところの数字のことです。</p>
-      <p>TurboWarp: https://turbowarp.org/ </p>
-      <p>注意：間違ってほかの数字を入力すると、ほかの人のプロジェクトが出てくる可能性があります。しっかり打ってください。</p>
+  <section class="hero is-success">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title is-size-1">スクラッチ共有補助サイト</h1>
+        <p></p>
+        <p class="is-size-4"> このサイトは、非公開のスクラッチプロジェクトが見れるサイト・ <a class="is-size-4" href="https://turbowarp.org/" target="_blank" rel="noopener noreferrer"><u>TurboWarp</u></a> にアクセスしやすいようにするために作ったサイトです。 </p>
+        <p class="is-size-4" style="margin-bottom:50px;"> <span class="has-text-weight-bold">
+              ※あくまでも、友達同士で、ネットに公開せずにスクラッチを見合いたい、という人のためのものです。
+            </span> </p>
+        <p class="is-size-4" style="margin-bottom:20px;"> 下の入力するところに、友達のプロジェクトのIDを入力して、Enterを押すか送信ボタンを押してください。 </p>
+        <div class="notification is-primary">
+          <p><span class="is-size-5">IDとは、プロジェクトを開いた時の上にあるURLの "scratch.mit.edu/projects/..." の、...の数字のことです。</span></p>
+        </div>
+      </div>
     </div>
-    <div id="input">
-      <p> <label>友達のプロジェクトのID：<input type="number" id="id"></label> <input type="button" value="送信" id="redirectButton"> </p>
+  </section>
+  <section class="hero is-warning">
+    <div class="hero-body">
+      <div class="container">
+        <h2 class="title is-size-2">注意</h2>
+        <p class="has-text-danger"><span class="is-size-5"><span class="has-text-weight-bold">間違ってほかの数字を入力してしまうと、ほかの人のプロジェクトに行ってしまう可能性があります。<br>数字は、正しく入力してください。</span></span>
+        </p>
+      </div>
     </div>
-  </div>
+  </section>
+  <section class="hero is-success">
+    <div class="hero-body">
+      <div class="container">
+        <p> <label class="is-size-3">友達のプロジェクトのID：<input type="number" id="id" class="is-size-4"></label> <input type="button" value="送信" id="redirectButton" class="is-size-4"> </p>
+      </div>
+    </div>
+  </section>
   <script>
     function buttonClick(){
       if(id.value == null || id.value == "" || id.value == '' || id.value <= 0 || String(id.value).indexOf('.') != -1){
