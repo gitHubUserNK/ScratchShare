@@ -1,33 +1,45 @@
 <!DOCTYPE html>
 <html lang="ja">
+<style>
+  body{
+        text-align: center;
+        }
+        h1 {
+        text-align: center;
+    }
+    div#text-caution{
+        background-color: rgba(213, 240, 114, 0.667);
+    }
+    div#input{
+        background-color: rgba(142, 211, 202, 0.671);
+    }
+</style>
 <head>
-<meta charset="UTF-8">
-<title>TurboWarpアクセスサイト</title>
+  <meta charset="UTF-8">
+  <title>TurboWarpアクセスサイト</title>
 </head>
 <body>
-<h1>スクラッチ共有補助サイト(TurboWarpアクセス補助サイト)</h1>
-
-<p>友達のスクラッチプロジェクトを見るツール・TurboWarpをアクセスしやすいように作ったサイトです。</p>
-<p>※あくまでも、友達同士で、ネットに公開せずにスクラッチを見合いたい、という人のためのものです。</p>
-<p>IDとは、スクラッチのプロジェクトを開いたときのURLに表示されている .../projects/ のところの数字のことです。</p>
-<p>TurboWarp: https://turbowarp.org/ </p>
-<p>注意：間違ってほかの数字を入力すると、ほかの人のプロジェクトが出てくる可能性があります。しっかり打ってください。</p>
-<p>
-<label>友達のプロジェクトのID：<input type="number" id="id"></label>
-<input type="button" value="送信" id="redirectButton">
-</p>
-
-<p id="msg"></p>
-
-<script>
-function buttonClick(){
-    window.open(('https://turbowarp.org/' + id.value))
-}
-
-let id = document.getElementById('id');
-id.value = '';
-
-let msg = document.getElementById('msg');
-let redirectButton = document.getElementById('redirectButton');
-redirectButton.addEventListener('click', buttonClick);
-</script>
+  <div id="center">
+    <h1>スクラッチ共有補助サイト</h1>
+    <div id="text-caution">
+      <p>友達のスクラッチプロジェクトを見るツール・TurboWarpをアクセスしやすいように作ったサイトです。</p>
+      <p>※あくまでも、友達同士で、ネットに公開せずにスクラッチを見合いたい、という人のためのものです。</p>
+      <p>IDとは、スクラッチのプロジェクトを開いたときのURLに表示されている .../projects/ のところの数字のことです。</p>
+      <p>TurboWarp: https://turbowarp.org/ </p>
+      <p>注意：間違ってほかの数字を入力すると、ほかの人のプロジェクトが出てくる可能性があります。しっかり打ってください。</p>
+    </div>
+    <div id="input">
+      <p> <label>友達のプロジェクトのID：<input type="number" id="id"></label> <input type="button" value="送信" id="redirectButton"> </p>
+    </div>
+  </div>
+  <script>
+    function buttonClick(){
+        window.open(('https://turbowarp.org/' + id.value))
+    }
+    
+    let id = document.getElementById('id');
+    id.value = '';
+    
+    let redirectButton = document.getElementById('redirectButton');
+    redirectButton.addEventListener('click', buttonClick);
+  </script>
