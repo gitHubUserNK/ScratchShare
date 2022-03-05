@@ -34,10 +34,27 @@
   </div>
   <script>
     function buttonClick(){
-        window.open(('https://turbowarp.org/' + id.value))
+      if(id.value == null || id.value == "" || id.value == '' || id.value <= 0 || String(id.value).match(".")){
+          alert('何も入力されていないか、無効なIDです。');
+          return;
+        }
+        window.open(('https://turbowarp.org/' + id.value));
     }
     
     let id = document.getElementById('id');
+    id.onkeypress = (e) => {
+      const key = e.keyCode || e.charCode || 0;
+
+      if(key == 13)
+      {
+        e.preventDefault();
+        if(id.value == null || id.value == "" || id.value == '' || id.value <= 0 || String(id.value).match(".")){
+          alert('何も入力されていないか、無効なIDです。');
+          return;
+        }
+        window.open(('https://turbowarp.org/' + id.value));
+      }
+    }
     id.value = '';
     
     let redirectButton = document.getElementById('redirectButton');
