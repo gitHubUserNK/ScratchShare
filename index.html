@@ -7,6 +7,11 @@
         h1 {
         text-align: center;
     }
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    margin: 0;
+    -webkit-appearance: none;
+  }
 </style>
 <head>
   <meta charset="UTF-8">
@@ -21,14 +26,14 @@
         <h1 class="title is-size-1">スクラッチ共有補助サイト</h1>
         <p></p>
         <p class="is-size-4"> このサイトは、非公開のスクラッチプロジェクトが見れるサイト・ <a class="is-size-4" href="https://turbowarp.org/" target="_blank" rel="noopener noreferrer"><u>TurboWarp</u></a> にアクセスしやすいようにするために作ったサイトです。 </p>
-        <p class="is-size-4" style="margin-bottom:50px;"> <span class="has-text-weight-bold">
+        <p class="is-size-4 has-text-weight-bold" style="margin-bottom:50px;">
               ※あくまでも、友達同士で、ネットに公開せずにスクラッチを見合いたい、という人のためのものです。
               <br>
               それ以外の用途で使用しないでください。
-            </span> </p>
+        </p>
         <p class="is-size-4" style="margin-bottom:20px;"> 下の入力するところに、友達のプロジェクトのIDを入力して、Enterを押すか送信ボタンを押してください。 </p>
         <div class="notification is-primary">
-          <p><span class="is-size-5">IDとは、プロジェクトを開いた時の上にあるURLの "scratch.mit.edu/projects/..." の、...の数字のことです。</span></p>
+          <p class="is-size-5">IDとは、プロジェクトを開いた時の上にあるURLの "scratch.mit.edu/projects/..." の、...の数字のことです。</p>
         </div>
       </div>
     </div>
@@ -37,43 +42,51 @@
     <div class="hero-body">
       <div class="container">
         <h2 class="title is-size-2">注意</h2>
-        <p class="has-text-danger"><span class="is-size-5"><span class="has-text-weight-bold">間違ってほかの数字を入力してしまうと、ほかの人のプロジェクトに行ってしまう可能性があります。<br>数字は、正しく入力してください。</span></span>
-        </p>
+        <p class="has-text-danger is-size-5 has-text-weight-bold">間違ってほかの数字を入力してしまうと、ほかの人のプロジェクトに行ってしまう可能性があります。<br>数字は、正しく入力してください。</p>
       </div>
     </div>
   </section>
   <section class="hero is-success">
     <div class="hero-body">
       <div class="container">
-        <p> <label class="is-size-3">友達のプロジェクトのID：<input type="number" id="id" class="is-size-4"></label> <input type="button" value="送信" id="redirectButton" class="is-size-4"> </p>
+        <p> <label class="is-size-3">友達のプロジェクトのID：
+          <input type="number" id="id" class="is-size-4 input is-info is-rounded is-focused" placeholder="プロジェクトのID" style="margin-bottom:20px;" width="500">
+        </label> 
+        <button class="button is-info is-size-4 is-hovered" id="redirectButton" disabled>送信</button> </p>
       </div>
     </div>
   </section>
   <script>
     function buttonClick(){
-      if(id.value == null || id.value == "" || id.value == '' || id.value <= 0 || String(id.value).indexOf('.') != -1){
-          alert('何も入力されていないか、無効なIDです。');
-          return;
-        }
-        window.open(('https://turbowarp.org/' + id.value));
+      if(canRedirect) window.open(('https://turbowarp.org/' + inputBox.value));
+      else alert('何も入力されていないか、無効なIDです。');
     }
-    
-    let id = document.getElementById('id');
-    id.onkeypress = (e) => {
-      const key = e.keyCode || e.charCode || 0;
 
-      if(key == 13)
-      {
-        e.preventDefault();
-        if(id.value == null || id.value == "" || id.value == '' || id.value <= 0 || String(id.value).indexOf('.') != -1){
-          alert('何も入力されていないか、無効なIDです。');
-          return;
-        }
-        window.open(('https://turbowarp.org/' + id.value));
+    function numberInput()
+    {
+      if(inputBox.value == null || inputBox.value == "" || inputBox.value == '' || inputBox.value <= 0 || inputBox.value.indexOf('.') != -1){
+          canRedirect = false;
+          redirectButton.disabled = true;
+      }else{
+        canRedirect = true;
+        redirectButton.disabled = false;
       }
     }
-    id.value = '';
     
+    let canRedirect = false;
     let redirectButton = document.getElementById('redirectButton');
+    let inputBox = document.getElementById('id');
+    inputBox.value = '';
     redirectButton.addEventListener('click', buttonClick);
+    inputBox.addEventListener('input', numberInput);
+    inputBox.onkeypress = (e) => {
+    const key = e.keyCode || e.charCode || 0;
+
+    if(key == 13)
+    {
+      e.preventDefault();
+      if(canRedirect) window.open(('https://turbowarp.org/' + inputBox.value));
+      else alert('何も入力されていないか、無効なIDです。');
+    }
+  }
   </script>
