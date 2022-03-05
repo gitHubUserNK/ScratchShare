@@ -34,7 +34,7 @@
   </div>
   <script>
     function buttonClick(){
-      if(id.value == null || id.value == "" || id.value == '' || id.value <= 0 || String(id.value).match(".")){
+      if(id.value == null || id.value == "" || id.value == '' || id.value <= 0 || String(id.value).indexOf('.') != -1){
           alert('何も入力されていないか、無効なIDです。');
           return;
         }
@@ -48,7 +48,7 @@
       if(key == 13)
       {
         e.preventDefault();
-        if(id.value == null || id.value == "" || id.value == '' || id.value <= 0 || String(id.value).match(".")){
+        if(id.value == null || id.value == "" || id.value == '' || id.value <= 0 || String(id.value).indexOf('.') != -1){
           alert('何も入力されていないか、無効なIDです。');
           return;
         }
