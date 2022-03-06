@@ -12,6 +12,10 @@
     margin: 0;
     -webkit-appearance: none;
   }
+
+  .center{
+    text-align: center;
+  }
 </style>
 <head>
   <meta charset="UTF-8">
@@ -42,7 +46,12 @@
     <div class="hero-body">
       <div class="container">
         <h2 class="title is-size-2">注意</h2>
-        <p class="has-text-danger is-size-5 has-text-weight-bold">間違ってほかの数字を入力してしまうと、ほかの人のプロジェクトに行ってしまう可能性があります。<br>数字は、正しく入力してください。</p>
+        <p class="has-text-danger is-size-4 has-text-weight-bold">間違ってほかの数字を入力してしまうと、ほかの人のプロジェクトに行ってしまう可能性があります。<br>数字は、正しく入力してください。</p>
+        <p class="has-text-danger is-size-4" style="margin-bottom:20px;">また、0から始まる数字を入力したり、記号が入っていたり、小数点を入力すると、無効なIDと認識されます。</p>
+
+        <div class="notification is-danger is-light has-text-warning-dark">
+          <span class="is-size-5">IDを入力して送信した後、紫色の文字で The project you tried to load does not exist. <br>と表示される場合は、プロジェクトのIDが間違っています。入力し直してください。</span>
+        </div>
       </div>
     </div>
   </section>
@@ -52,41 +61,70 @@
         <p> <label class="is-size-3">友達のプロジェクトのID：
           <input type="number" id="id" class="is-size-4 input is-info is-rounded is-focused" placeholder="プロジェクトのID" style="margin-bottom:20px;" width="500">
         </label> 
-        <button class="button is-info is-size-4 is-hovered" id="redirectButton" disabled>送信</button> </p>
+        <button class="button is-info is-size-4 is-hovered" id="redirectButton">送信</button> </p>
       </div>
     </div>
   </section>
+  <div class="modal is-warning" id="notification-modal-window">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+      <section class="modal-card-body has-background-warning is-size-3">
+        何も入力されていないか、無効なIDが入力されています。<br><strong>正しい</strong>IDを入力してください。
+      </section>
+      <footer class="modal-card-foot has-background-white-ter">
+        <button class="button is-success is-size-4" aria-label="close" id="notification-modal-close" style="margin: auto;">OK</button>
+      </footer>
+    </div>
+  </div>
+
   <script>
-    function buttonClick(){
+    function onRedirectButtonClick(){
       if(canRedirect) window.open(('https://turbowarp.org/' + inputBox.value));
-      else alert('何も入力されていないか、無効なIDです。');
+      else openNotificationModal();
     }
 
     function numberInput()
     {
       if(inputBox.value == null || inputBox.value == "" || inputBox.value == '' || inputBox.value <= 0 || inputBox.value.indexOf('.') != -1){
-          canRedirect = false;
-          redirectButton.disabled = true;
+        canRedirect = false;
+        //redirectButton.disabled = true;
       }else{
         canRedirect = true;
-        redirectButton.disabled = false;
+        //redirectButton.disabled = false;
       }
     }
-    
+
+    function openNotificationModal(){
+      const $modal = document.getElementById('notification-modal-window');
+      $modal.classList.add('is-active');  // is-activeクラスを追加
+      document.getElementById('notification-modal-close').focus();
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const $close = document.getElementById('notification-modal-close');
+      $close.addEventListener('click', () => {
+        const $modal = document.getElementById('notification-modal-window');
+        $modal.classList.remove('is-active');  // is-activeクラスを削除
+
+        inputBox.value = '';
+        inputBox.focus();
+      });
+    });
+
     let canRedirect = false;
     let redirectButton = document.getElementById('redirectButton');
     let inputBox = document.getElementById('id');
+    let errorDialog = document.getElementById('err-dialog');
     inputBox.value = '';
-    redirectButton.addEventListener('click', buttonClick);
+    redirectButton.addEventListener('click', onRedirectButtonClick);
     inputBox.addEventListener('input', numberInput);
     inputBox.onkeypress = (e) => {
-    const key = e.keyCode || e.charCode || 0;
-
-    if(key == 13)
-    {
-      e.preventDefault();
-      if(canRedirect) window.open(('https://turbowarp.org/' + inputBox.value));
-      else alert('何も入力されていないか、無効なIDです。');
+      const key = e.keyCode || e.charCode || 0;
+      if(key == 13)
+      {
+        e.preventDefault();
+        if(canRedirect) window.open(('https://turbowarp.org/' + inputBox.value));
+        else openNotificationModal();
+      }
     }
-  }
   </script>
