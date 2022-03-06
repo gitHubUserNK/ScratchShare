@@ -12,10 +12,6 @@
     margin: 0;
     -webkit-appearance: none;
   }
-
-  .center{
-    text-align: center;
-  }
 </style>
 <head>
   <meta charset="UTF-8">
@@ -30,16 +26,10 @@
         <h1 class="title is-1 has-text-grey-dark">スクラッチ共有補助サイト</h1>
         <p></p>
         <p class="is-size-4"> このサイトは、非公開のスクラッチプロジェクトが見れるサイト・ <a class="is-size-4" href="https://turbowarp.org/" target="_blank" rel="noopener noreferrer"><u>TurboWarp</u></a> にアクセスしやすいようにするために作ったサイトです。 </p>
-        <p class="is-size-4 has-text-weight-bold" style="margin-bottom:50px;">
-              ※あくまでも、友達同士で、ネットに公開せずにスクラッチを見合いたい、という人のためのものです。
-              <br>
-              それ以外の用途で使用しないでください。
-        </p>
+        <p class="is-size-4 has-text-weight-bold" style="margin-bottom:50px;"> ※あくまでも、友達同士で、ネットに公開せずにスクラッチを見合いたい、という人のためのものです。 <br> それ以外の用途で使用しないでください。 </p>
         <p class="is-size-4" style="margin-bottom:20px;"> 下の入力するところに、友達のプロジェクトのIDを入力して、Enterを押すか送信ボタンを押してください。 </p>
         <div class="notification is-primary">
-          <p class="is-size-5 has-text-link-dark">IDとは、プロジェクトを開いた時の上にあるURLの "scratch.mit.edu/projects/..." の、...の数字のことです。
-            <br>
-            例）scratch.mit.edu/projects/654250424 の場合は、654250424がIDとなります。</p>
+          <p class="is-size-5 has-text-link-dark">IDとは、プロジェクトを開いた時の上にあるURLの "scratch.mit.edu/projects/..." の、...の数字のことです。 <br> 例）scratch.mit.edu/projects/654250424 の場合は、654250424がIDとなります。</p>
         </div>
       </div>
     </div>
@@ -50,10 +40,7 @@
         <h2 class="title is-size-2">注意</h2>
         <p class="has-text-danger is-size-4 has-text-weight-bold">間違ってほかの数字を入力してしまうと、ほかの人のプロジェクトに行ってしまう可能性があります。<br>数字は、正しく入力してください。</p>
         <p class="has-text-danger is-size-4" style="margin-bottom:20px;">また、0から始まる数字を入力したり、記号が入っていたり、小数点を入力すると、無効なIDと認識されます。</p>
-
-        <div class="notification is-danger is-light has-text-warning-dark">
-          <span class="is-size-5">IDを入力して送信した後、紫色の文字で The project you tried to load does not exist. <br>と表示される場合は、プロジェクトのIDが間違っています。入力し直してください。</span>
-        </div>
+        <div class="notification is-danger is-light has-text-warning-dark"> <span class="is-size-5">IDを入力して送信した後、紫色の文字で The project you tried to load does not exist. <br>と表示される場合は、プロジェクトのIDが間違っています。入力し直してください。</span> </div>
       </div>
     </div>
   </section>
@@ -62,23 +49,17 @@
       <div class="container">
         <p> <label class="is-size-3">友達のプロジェクトのID：
           <input type="number" id="id" class="is-size-4 input is-info is-rounded is-focused" placeholder="プロジェクトのID" style="margin-bottom:20px;" width="500">
-        </label> 
-        <button class="button is-info is-size-4 is-hovered" id="redirectButton">送信</button> </p>
+        </label> <button class="button is-info is-size-4 is-hovered" id="redirectButton">送信</button> </p>
       </div>
     </div>
   </section>
   <div class="modal is-warning" id="notification-modal-window">
     <div class="modal-background"></div>
     <div class="modal-card">
-      <section class="modal-card-body has-background-warning is-size-3">
-        何も入力されていないか、無効なIDが入力されています。<br><strong>正しい</strong>IDを入力してください。
-      </section>
-      <footer class="modal-card-foot has-background-white-ter">
-        <button class="button is-success is-size-4" aria-label="close" id="notification-modal-close" style="margin: auto;">OK</button>
-      </footer>
+      <section class="modal-card-body has-background-warning is-size-3"> 何も入力されていないか、無効なIDが入力されています。<br><strong>正しい</strong>IDを入力してください。 </section>
+      <footer class="modal-card-foot has-background-white-ter"> <button class="button is-success is-size-4" aria-label="close" id="notification-modal-close" style="margin: auto;">OK</button> </footer>
     </div>
   </div>
-
   <script>
     function onRedirectButtonClick(){
       if(canRedirect) window.open(('https://turbowarp.org/' + inputBox.value));
