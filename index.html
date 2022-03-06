@@ -27,7 +27,7 @@
         <p></p>
         <p class="is-size-4"> このサイトは、非公開のスクラッチプロジェクトが見れるサイト・ <a class="is-size-4" href="https://turbowarp.org/" target="_blank" rel="noopener noreferrer"><u>TurboWarp</u></a> にアクセスしやすいようにするために作ったサイトです。 </p>
         <p class="is-size-4 has-text-weight-bold" style="margin-bottom:50px;"> ※あくまでも、友達同士で、ネットに公開せずにスクラッチを見合いたい、という人のためのものです。 <br> それ以外の用途で使用しないでください。 </p>
-        <p class="is-size-4" style="margin-bottom:20px;"> 下の入力するところに、友達のプロジェクトのIDを入力して、Enterを押すか送信ボタンを押してください。 </p>
+        <p class="is-size-4" style="margin-bottom:20px;"> <u onclick="scrollToBottom()" style="color:bisque; cursor: pointer;">下の入力するところ</u>に、友達のプロジェクトのIDを入力して、Enterを押すか送信ボタンを押してください。 </p>
         <div class="notification is-primary">
           <p class="is-size-5 has-text-link-dark">IDとは、プロジェクトを開いた時の上にあるURLの "scratch.mit.edu/projects/..." の、...の数字のことです。 <br> 例）scratch.mit.edu/projects/654250424 の場合は、654250424がIDとなります。</p>
         </div>
@@ -91,8 +91,17 @@
 
         inputBox.value = '';
         inputBox.focus();
+
+        scrollToBottom();
       });
     });
+
+    function scrollToBottom(){
+      var element = document.documentElement;
+      var bottom = element.scrollHeight - element.clientHeight;
+
+      window.scrollTo({top: bottom, left: 0, behavior: 'smooth'});
+    }
 
     let canRedirect = false;
     let redirectButton = document.getElementById('redirectButton');
